@@ -1,21 +1,20 @@
 import Loadable from 'react-loadable';
 
-const loadComponent = (path) => Loadable({
-  loader: () => import(`${path}`),
-  loading: () => null,
-});
-
 export default [
   {
     path: '/',
-    component: loadComponent('./containers/App'),
+    component: Loadable({ loader: () => import('./containers/App'), loading: () => null }),
     routes: [
       {
         path: '/posts',
-        component: loadComponent('./containers/PostListPage'),
+        component: Loadable({ loader: () => import('./containers/PostListPage'), loading: () => null }),
       },
-      { component: loadComponent('./components/NotFound') },
+      {
+        component: Loadable({ loader: () => import('./components/NotFound'), loading: () => null }),
+      },
     ],
   },
-  { component: loadComponent('./components/NotFound') },
+  {
+    component: Loadable({ loader: () => import('./components/NotFound'), loading: () => null }),
+  },
 ];
